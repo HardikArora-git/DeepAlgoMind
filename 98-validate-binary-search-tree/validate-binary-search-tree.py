@@ -23,17 +23,15 @@ class Solution:
         # right = self.isValidBSt(root.right)
 
         # return root
-# print(check(root))
-        def validate(node, low=-float('inf'), high=float('inf')):
-            # An empty node is valid
-            if not node:
+# print(check(root)
+        def valid(root, low=-float("inf"), high=float("inf")):
+            if root is None:
                 return True
-            
-            # The current node's value must fit within the current bounds
-            if not (low < node.val < high):
+
+            if not (low < root.val < high):
                 return False
-            
-            # Recursively check subtrees with updated boundaries
-            return validate(node.left, low, node.val) and validate(node.right, node.val, high)
-        
-        return validate(root)
+
+            return (valid(root.left, low, root.val) and
+                    valid(root.right, root.val, high))
+
+        return valid(root)
